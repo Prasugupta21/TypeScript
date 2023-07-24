@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import { CounterProvider } from './components/context/Counter';
 import './App.css';
 import Button from './components/Button';
 function App() {
   return (
     <div className="App">
+      <CounterProvider>
      <Button onClick={()=>alert('okay')} text="CLICK ME AGAIN"/>
+     </CounterProvider>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCounter } from './context/Counter';
 interface ButtonProps {
     text: string | number | boolean,
     onClick?: () => void
@@ -6,31 +7,16 @@ interface ButtonProps {
 
 
 const Button: React.FC<ButtonProps> = (props) => {
-    const { text,onClick } = props;
-    const [value, setValue] = useState<string | undefined>();
+const context=useCounter();
 
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-        setValue(e.target.value)
-    }
-
-    const handleSubmit=(e:React.FormEvent<HTMLFormElement>)=>{
-        e.preventDefault();
-        console.log(e);
-        
-
-    }
+   
     
 
       
      
             return (
                 <div>
-        <form onSubmit={handleSubmit}>
-            <input type="text" onChange={handleNameChange} placeholder='Enter your Name' />
-            <h1>{value}</h1>
-            <button type='submit' >Submit</button>
-            </form>
+ <h1 onClick={(e)=>context?.setCount(context?.value+1)}>      {context?.value}</h1>
         </div>
     )
 }
